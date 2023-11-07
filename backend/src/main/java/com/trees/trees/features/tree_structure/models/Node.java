@@ -23,10 +23,14 @@ public class Node {
     private Node parentNode;
 
     @Column(name = "value", columnDefinition = "INT")
-    private int value;
+    private Integer value;
 
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "treeId")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Tree tree;
+
+    public Node (Tree tree) {
+        this.tree = tree;
+    }
 }

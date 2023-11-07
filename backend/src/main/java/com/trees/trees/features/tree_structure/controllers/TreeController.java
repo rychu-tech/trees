@@ -4,10 +4,9 @@ import com.trees.trees.features.tree_structure.helpers.TreeValidator;
 import com.trees.trees.features.tree_structure.models.Tree;
 import com.trees.trees.features.tree_structure.requests.TreeRequest;
 import com.trees.trees.features.tree_structure.services.TreeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/trees")
@@ -32,4 +31,10 @@ public class TreeController {
         treeValidator.validateTreeName(treeName);
         return treeService.addTree(treeRequest);
     }
+
+    @GetMapping
+    public List<Tree> getTreeList() {
+        return treeService.getTreeList();
+    }
+
 }
