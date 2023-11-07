@@ -48,18 +48,47 @@ public class TreeService {
         Node root = nodeRepository.findByParentNodeIdAndTreeId(null, treeId);
         NodeView rootNode = new NodeView(root.getValue());
         rootNode.setId(root.getId());
+
+        // Calculate and set the leaf sum for the root node
+        int leafSum = calculateLeafSum(root);
+        rootNode.setLeafSum(leafSum);
+
         buildTreeView(root, rootNode);
+
         return rootNode;
     }
 
     private void buildTreeView(Node node, NodeView parentNodeView) {
         List<Node> children = nodeRepository.findByParentNodeId(node.getId());
+
         for (Node child : children) {
             NodeView nodeView = new NodeView(child.getValue());
             nodeView.setId(child.getId());
             nodeView.setParentNodeId(child.getParentNode().getId());
+
+            // Calculate and set the leaf sum for the child node
+            int leafSum = calculateLeafSum(child);
+            nodeView.setLeafSum(leafSum);
+
             parentNodeView.addChild(nodeView);
             buildTreeView(child, nodeView);
         }
     }
+
+    private int calculateLeafSum(Node node) {
+        // Recursive function to calculate the sum of nodes below a given node
+        Integer nodeValue = node.getValue();
+        if (nodeValue == null) {
+            nodeValue = 0;
+        }
+        int sum = nodeValue;
+
+        List<Node> children = nodeRepository.findByParentNodeId(node.getId());
+        for (Node child : children) {
+            sum += calculateLeafSum(child);
+        }
+
+        return sum;
+    }
+
 }

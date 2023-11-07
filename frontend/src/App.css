@@ -36,3 +36,74 @@
   display: inline-block;
   height: 100%;
 }
+
+.tree ul {
+  padding-top: 20px; 
+  position: relative;
+}
+
+.tree li {
+  float: left; 
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+}
+
+.tree li::before, .tree li::after{
+  content: '';
+  position: absolute; 
+  top: 0; 
+  right: 50%;
+  border-top: 1px solid black;
+  width: 50%; 
+  height: 20px;
+}
+
+.tree li::after{
+  right: auto; 
+  left: 50%;
+  border-left: 1px solid black;
+}
+
+.tree li:only-child::after, .tree li:only-child::before {
+  display: none;
+}
+
+.tree li:only-child{ padding-top: 0;}
+
+.tree li:first-child::before, .tree li:last-child::after{
+  border: 0 none;
+}
+.tree li:last-child::before{
+  border-right: 1px solid black;
+  border-radius: 0 5px 0 0;
+
+}
+
+.tree ul ul::before{
+  content: '';
+  position: absolute; 
+  top: 0; 
+  left: 50%;
+  border-left: 1px solid black;
+  width: 0; 
+  height: 20px;
+}
+.tree li div{
+  border: 1px solid black;
+  padding: 5px 60px;
+  font-size: 2.5rem;
+  display: inline-block;
+}
+.tree li div:hover, .tree li div:hover+ul li div {
+  background: lightblue; 
+  color: black; 
+  border: 1px solid lightblue;
+}
+.tree li div:hover+ul li::after, 
+.tree li div:hover+ul li::before, 
+.tree li div:hover+ul::before, 
+.tree li div:hover+ul ul::before{
+  border-color: lightblue;
+}

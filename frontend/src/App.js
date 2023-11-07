@@ -17,7 +17,6 @@ function App() {
         .finally(() => {
           
         });
-    console.log(selectedTree)
     
   };
   return (
@@ -28,11 +27,39 @@ function App() {
         <NewTreeButton />
       </div>
       <div className='tree'>
-        {(selectedTree)  ? selectedTree.id : null}
+        {(selectedTree)  ? treeRendering([selectedTree]) : null}
       </div>
     </div>
   );
 
+}
+
+const treeRendering = (selectedTree) => {
+  return (
+    <>
+      <ul>
+        {
+          selectedTree.map((item) => 
+            <li key={item.id} className={"node-"+item.id}>
+              
+              <div key={item.id}>
+                {item.value ? item.value : "ROOT"}
+              </div>
+              {
+                " Cost: " + item.leafSum
+              }
+              {
+                item.children && item.children.length ? treeRendering(item.children) : ''
+              }
+              
+            </li>
+          )
+        }
+
+      </ul>
+          
+    </>
+  )
 }
 
 export default App;
