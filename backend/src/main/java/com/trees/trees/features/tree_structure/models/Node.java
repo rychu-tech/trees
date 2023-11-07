@@ -33,4 +33,10 @@ public class Node {
     public Node (Tree tree) {
         this.tree = tree;
     }
+
+    public Node (Node parentNode,  Tree tree, Integer value) {
+        this.parentNode = parentNode;
+        this.tree = tree;
+        this.value = value;
+    }
 }
