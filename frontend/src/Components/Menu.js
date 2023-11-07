@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from './axiosConfig';
+import axiosInstance from '../axiosConfig';
 
-const Menu = () => {
+const Menu = ({ selectedTree, onSelectTree }) => {
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [currentItem, setCurrentItem] = useState(null);
 
-    const [selectedItem, setSelectedItem] = useState(null);
-
-    const handleItemClick = (item) => {
-        setSelectedItem(item);
+    const handleTreeSelected = (item) => {
+      onSelectTree(item);
+      setCurrentItem(item);
     };
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Menu = () => {
           setMenuItems(response.data);
         })
         .catch((error) => {
-          console.error('Błąd podczas pobierania danych', error);
+          alert('Błąd podczas pobierania danych');
         })
         .finally(() => {
           setLoading(false);
@@ -32,9 +32,10 @@ const Menu = () => {
             <div className='menu-items'>
                 {menuItems.map((item, index) => (
                     <div 
+                        id={item.id}
                         key={index} 
-                        onClick={() => handleItemClick(item)}
-                        className={selectedItem === item ? 'menu-item-selected' : 'menu-item'}
+                        onClick={() => handleTreeSelected(item)}
+                        className={currentItem === item ? 'menu-item-selected' : 'menu-item'}
                     >
                         {item.name}
                     </div>

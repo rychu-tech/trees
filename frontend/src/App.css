@@ -18,6 +18,10 @@
   border-top: 2px solid black;
 }
 
+.menu-items > :last-child {
+  margin-bottom: 10px;
+}
+
 .menu-item {
   border-bottom: 2px solid black ;
 }
