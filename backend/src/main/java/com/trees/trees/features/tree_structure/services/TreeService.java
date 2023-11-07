@@ -1,7 +1,10 @@
 package com.trees.trees.features.tree_structure.services;
 
 import com.trees.trees.features.tree_structure.helpers.TreeValidator;
+import com.trees.trees.features.tree_structure.models.Node;
+import com.trees.trees.features.tree_structure.models.NodeView;
 import com.trees.trees.features.tree_structure.models.Tree;
+import com.trees.trees.features.tree_structure.models.TreeView;
 import com.trees.trees.features.tree_structure.repositories.NodeRepository;
 import com.trees.trees.features.tree_structure.repositories.TreeRepository;
 import com.trees.trees.features.tree_structure.requests.TreeRequest;
@@ -39,5 +42,24 @@ public class TreeService {
     public List<Tree> getTreeList() {
         List<Tree> trees = treeRepository.findAll();
         return trees;
+    }
+
+    public NodeView generateTreeView(Long treeId) {
+        Node root = nodeRepository.findByParentNodeIdAndTreeId(null, treeId);
+        NodeView rootNode = new NodeView(root.getValue());
+        rootNode.setId(root.getId());
+        buildTreeView(root, rootNode);
+        return rootNode;
+    }
+
+    private void buildTreeView(Node node, NodeView parentNodeView) {
+        List<Node> children = nodeRepository.findByParentNodeId(node.getId());
+        for (Node child : children) {
+            NodeView nodeView = new NodeView(child.getValue());
+            nodeView.setId(child.getId());
+            nodeView.setParentNodeId(child.getParentNode().getId());
+            parentNodeView.addChild(nodeView);
+            buildTreeView(child, nodeView);
+        }
     }
 }

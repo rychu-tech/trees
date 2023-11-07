@@ -2,6 +2,7 @@ package com.trees.trees.features.tree_structure.controllers;
 
 import com.trees.trees.features.tree_structure.helpers.TreeValidator;
 import com.trees.trees.features.tree_structure.models.Node;
+import com.trees.trees.features.tree_structure.models.NodeView;
 import com.trees.trees.features.tree_structure.models.Tree;
 import com.trees.trees.features.tree_structure.requests.NodeRequest;
 import com.trees.trees.features.tree_structure.requests.TreeRequest;
@@ -86,6 +87,15 @@ public class TreeController {
         treeValidator.validateTreeRootNodeDeletion(nodeId);
 
         nodeService.deleteNode(nodeId);
+    }
+
+    @GetMapping("/{treeId}")
+    public NodeView getTree(
+            @PathVariable Long treeId
+    )
+    {
+        treeValidator.validateTreeId(treeId);
+        return treeService.generateTreeView(treeId);
     }
 
 }
