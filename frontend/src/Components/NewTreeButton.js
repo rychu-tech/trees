@@ -2,8 +2,8 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../axiosConfig';
-import "./NewTreeButton.css"
+import axiosInstance from '../axiosConfig';
+import "../Styles/Popup.css"
 
 const NewTreeButton = () => {
     const [modal, setModal] = useState(false);
@@ -21,7 +21,7 @@ const NewTreeButton = () => {
                 name: treeName
             })
             .then((response) => {
-                alert("Pomyślnie dodano drzewo!");
+                alert("Succesfully added tree");
                 window.location.reload(false);
             })
             .catch((error) => {

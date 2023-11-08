@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 
-import DeleteTreePopup from './DeleteTreePopup/DeleteTreePopup';
+import DeleteTreePopup from './DeleteTreePopup';
 
 const Menu = ({ selectedTree, onSelectTree }) => {
     const [menuItems, setMenuItems] = useState([]);

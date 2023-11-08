@@ -8,6 +8,14 @@
     position: fixed;
 }
 
+.modal {
+    z-index: 9000;
+}
+
+.btn {
+    width: 50%;
+}
+
 .overlay {
     background: rgba(49, 49, 49, 0.8);
 }
@@ -24,10 +32,8 @@
     min-width: 300px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: black;
-}
-
-.modal {
-    z-index: 9000;
 }
 

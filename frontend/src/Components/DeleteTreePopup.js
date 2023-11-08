@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axiosInstance from '../../axiosConfig';
-import "./DeleteTreePopup.css"
+import axiosInstance from '../axiosConfig';
+import "../Styles/Popup.css"
 import { DeleteOutline } from '@mui/icons-material';
 import Button from '@mui/material/Button';
 
@@ -21,7 +21,7 @@ const DeleteTreePopup = (props) => {
     const deleteTree = () => {
         axiosInstance.delete('/trees/' + props.treeId)
         .then(() => {
-          alert("Pomyślnie usunięto drzewo!")
+          alert("Succesfully deleted tree!")
 
           window.location.href = '/';
         })
