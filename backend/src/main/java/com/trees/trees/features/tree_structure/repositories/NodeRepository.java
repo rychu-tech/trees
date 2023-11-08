@@ -10,4 +10,5 @@ public interface NodeRepository extends JpaRepository<Node, Long> {
     Node findByIdAndTreeId(Long id, Long treeId);
     List<Node> findByParentNodeId(Long parentNodeId);
     Node findByParentNodeIdAndTreeId(Long parentNodeId, Long treeId);
+    Node findByValueAndTreeId(Integer value, Long treeId);
 }

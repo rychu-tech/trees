@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/trees")
 public class TreeController {
     private final TreeService treeService;
@@ -52,9 +53,10 @@ public class TreeController {
     {
         Long nodeId = nodeRequest.getParentNodeId();
         treeValidator.validateTreeId(treeId);
-        treeValidator.validateNodeId(nodeId);
-        treeValidator.validateNodeBelongingToTree(nodeId, treeId);
-
+        treeValidator.validateValue(nodeRequest.getValue());
+        if (nodeId != null) {
+            treeValidator.validateNodeBelongingToTree(nodeId, treeId);
+        }
         nodeService.addNodeToTree(treeId, nodeRequest);
     }
 
@@ -68,11 +70,15 @@ public class TreeController {
         Long parentNodeId = nodeRequest.getParentNodeId();
         treeValidator.validateTreeId(treeId);
         treeValidator.validateNodeId(nodeId);
-        treeValidator.validateNodeId(parentNodeId);
+        treeValidator.validateValue(nodeRequest.getValue());
+        if (parentNodeId != null) {
+            treeValidator.validateNodeId(parentNodeId);
+            treeValidator.validateNodeBelongingToTree(parentNodeId, treeId);
+        }
         treeValidator.validateNodeBelongingToTree(nodeId, treeId);
-        treeValidator.validateNodeBelongingToTree(parentNodeId, treeId);
 
-        nodeService.editNode(nodeId, nodeRequest);
+
+        nodeService.editNode(nodeId, nodeRequest, treeId);
     }
 
     @DeleteMapping("/{treeId}/nodes/{nodeId}")
@@ -96,6 +102,15 @@ public class TreeController {
     {
         treeValidator.validateTreeId(treeId);
         return treeService.generateTreeView(treeId);
+    }
+
+    @DeleteMapping("/{treeId}")
+    public void deleteTree(
+            @PathVariable Long treeId
+    )
+    {
+        treeValidator.validateTreeId(treeId);
+        treeService.deleteTree(treeId);
     }
 
 }

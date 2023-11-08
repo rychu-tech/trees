@@ -14,7 +14,8 @@ public class GlobalExceptionHandler {
             TreeIdNotExistsException.class,
             NodeDoesNotBelongToTreeException.class,
             NodeIdNotExistsException.class,
-            RootNodeCannotBeDeletedException.class
+            RootNodeCannotBeDeletedException.class,
+            EmptyValueException.class
     })
     public ResponseEntity<ErrorResponse> handleCustomException(Exception ex) {
         HttpStatus status = HttpStatus.BAD_REQUEST;

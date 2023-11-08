@@ -32,17 +32,32 @@ public class NodeService {
     }
 
     public Node addNodeToTree(Long treeId, NodeRequest nodeRequest) {
-        Node parentNode = nodeRepository.findById(nodeRequest.getParentNodeId()).orElse(null);
+        Long parentNodeId = nodeRequest.getParentNodeId();
         Tree tree = treeRepository.findById(treeId).orElse(null);
-
-        Node node = new Node(parentNode, tree, nodeRequest.getValue());
-        return nodeRepository.save(node);
+        if (parentNodeId != null) {
+            Node parentNode = nodeRepository.findById(parentNodeId).orElse(null);
+            Node node = new Node(parentNode, tree, nodeRequest.getValue());
+            return nodeRepository.save(node);
+        }
+        else {
+            Node parentNode = nodeRepository.findByValueAndTreeId(null, treeId);
+            Node node = new Node(parentNode, tree, nodeRequest.getValue());
+            return nodeRepository.save(node);
+        }
     }
 
-    public Node editNode(Long nodeId, NodeRequest nodeRequest) {
-        Node parentNode = nodeRepository.findById(nodeRequest.getParentNodeId()).orElse(null);
+    public Node editNode(Long nodeId, NodeRequest nodeRequest, Long treeId) {
         Node node = nodeRepository.findById(nodeId).orElse(null);
-        node.setParentNode(parentNode);
+        Long parentNodeId = nodeRequest.getParentNodeId();
+        if (parentNodeId != null) {
+            Node parentNode = nodeRepository.findById(parentNodeId).orElse(null);
+            node.setParentNode(parentNode);
+        }
+        else {
+            Node parentNode = nodeRepository.findByValueAndTreeId(null, treeId);
+            node.setParentNode(parentNode);
+        }
+
         node.setValue(nodeRequest.getValue());
         return nodeRepository.save(node);
     }

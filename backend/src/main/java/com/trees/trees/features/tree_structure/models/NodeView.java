@@ -17,6 +17,7 @@ public class NodeView {
     private Long parentNodeId;
     private Integer value;
     private List<NodeView> children;
+    private Integer leafSum;
 
     public NodeView(Integer value) {
         this.value = value;

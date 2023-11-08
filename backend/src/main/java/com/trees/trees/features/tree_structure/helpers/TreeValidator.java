@@ -57,4 +57,10 @@ public class TreeValidator {
             throw new RootNodeCannotBeDeletedException();
         }
     }
+
+    public void validateValue(Integer value) throws EmptyValueException {
+        if (value == null) {
+            throw new EmptyValueException();
+        }
+    }
 }
