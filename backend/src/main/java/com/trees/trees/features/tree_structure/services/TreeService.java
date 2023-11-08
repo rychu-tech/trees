@@ -91,4 +91,11 @@ public class TreeService {
         return sum;
     }
 
+    public void deleteTree(Long treeId) {
+        Tree tree = treeRepository.findById(treeId).orElse(null);
+        List<Node> treeNodes = nodeRepository.findByTreeId(treeId);
+        nodeRepository.deleteAll(treeNodes);
+        treeRepository.delete(tree);
+    }
+
 }

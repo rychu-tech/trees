@@ -99,4 +99,13 @@ public class TreeController {
         return treeService.generateTreeView(treeId);
     }
 
+    @DeleteMapping("/{treeId}")
+    public void deleteTree(
+            @PathVariable Long treeId
+    )
+    {
+        treeValidator.validateTreeId(treeId);
+        treeService.deleteTree(treeId);
+    }
+
 }
