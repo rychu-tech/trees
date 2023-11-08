@@ -44,7 +44,7 @@ const NewTreeButton = () => {
     }
 
 
-    return <div>
+    return <div className='new-tree-button-container'>
     <Button 
         variant="contained" 
         size="large"
@@ -64,7 +64,7 @@ const NewTreeButton = () => {
                 variant="standard" 
                 size='large'
                 onChange={e => setTreeName(e.target.value)}
-                defaultValue={treeName}
+                defaultValue={""}
             />
             <br></br>
             <Button 

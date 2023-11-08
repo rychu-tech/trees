@@ -4,37 +4,50 @@
   height: 100vh;
 }
 
+.new-tree-button-container {
+  margin-bottom: 2rem;
+}
+
+.menu-header-container {
+  height: 10vh;
+}
+
 .menu {
   width: 20vw;
   display: inline-block;
-  height: 100%;
-  border-right: 8px solid black;
-
+  height: 100vh;
+  border-right: 0.5rem solid black;
+  background-color: #333333;
+  color: #a9a9a9;
   text-align: center;
   font-size: 2rem;
 }
 
-.menu-items > :first-child {
-  border-top: 2px solid black;
+.menu-items {
+  overflow-y: auto;
+  height: 80vh;
+  margin-bottom: 1rem;
 }
 
-.menu-items > :last-child {
-  margin-bottom: 10px;
-}
-
+.menu-item-selected,
 .menu-item {
-  border-bottom: 2px solid black ;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-top: 0.2rem solid black;
+  height: 4rem;
+  background-color: #333333;
+  cursor: pointer;
 }
 
 .menu-item-selected {
-  border-bottom: 2px solid black;
-  background-color: yellow;
+  color: #333333;
+  background-color:#989898;
 }
 
-.tree {
-  width: 80vw;
-  display: inline-block;
-  height: 100%;
+.delete-outline-button:hover {
+  cursor: pointer;
 }
 
 .tree ul {
@@ -55,7 +68,7 @@
   position: absolute; 
   top: 0; 
   right: 50%;
-  border-top: 1px solid black;
+  border-top: 0.3rem solid black;
   width: 50%; 
   height: 20px;
 }
@@ -63,7 +76,7 @@
 .tree li::after{
   right: auto; 
   left: 50%;
-  border-left: 1px solid black;
+  border-left: 0.3rem solid black;
 }
 
 .tree li:only-child::after, .tree li:only-child::before {
@@ -76,7 +89,7 @@
   border: 0 none;
 }
 .tree li:last-child::before{
-  border-right: 1px solid black;
+  border-right:  0.3rem solid black;
   border-radius: 0 5px 0 0;
 
 }
@@ -86,24 +99,79 @@
   position: absolute; 
   top: 0; 
   left: 50%;
-  border-left: 1px solid black;
+  border-left:  0.3rem solid black;
   width: 0; 
   height: 20px;
 }
 .tree li div{
-  border: 1px solid black;
+  border:  0.3rem solid black;
   padding: 5px 60px;
   font-size: 2.5rem;
   display: inline-block;
 }
-.tree li div:hover, .tree li div:hover+ul li div {
-  background: lightblue; 
-  color: black; 
-  border: 1px solid lightblue;
+
+.tree li .value:hover {
+  background: lightblue;
+  color: black;
+  border: 0.2rem solid lightblue;
+  cursor: pointer;
 }
-.tree li div:hover+ul li::after, 
-.tree li div:hover+ul li::before, 
-.tree li div:hover+ul::before, 
-.tree li div:hover+ul ul::before{
-  border-color: lightblue;
+.tree li .node-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+
+
+
+.tree li .node-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: none;
+}
+
+.tree li .leaf {
+  font-size: 1.5rem;
+  color: black;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 0.5rem
+}
+
+.tree li .leaf::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-top: 2rem solid black;
+  width: 0.25rem;
+}
+
+.tree li .value {
+  font-size: 2.5rem;
+  border: 0.2rem solid black;
+  padding: 5px 60px;
+  display: inline-block;
+  margin-top: 2rem;
+  border-radius: 50%;
+}
+
+.tree-container {
+  width: 80vw;
+  background-color: #a9a9a9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-tree-selected {
+  font-size: 6rem;
 }
