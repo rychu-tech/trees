@@ -1,5 +1,4 @@
 import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
 import TextField from '@mui/material/TextField';
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
@@ -54,7 +53,7 @@ const NewTreeButton = () => {
         <div className="modal">
         <div onClick={toggleModal} className="overlay"></div>
         <div className="modal-content">
-            <h2>Add New Tree</h2>
+            <div>Add New Tree</div>
             <TextField 
                 label="Tree Name" 
                 variant="standard" 

@@ -53,9 +53,10 @@ public class TreeController {
     {
         Long nodeId = nodeRequest.getParentNodeId();
         treeValidator.validateTreeId(treeId);
-        treeValidator.validateNodeId(nodeId);
-        treeValidator.validateNodeBelongingToTree(nodeId, treeId);
-
+        treeValidator.validateValue(nodeRequest.getValue());
+        if (nodeId != null) {
+            treeValidator.validateNodeBelongingToTree(nodeId, treeId);
+        }
         nodeService.addNodeToTree(treeId, nodeRequest);
     }
 
@@ -69,11 +70,15 @@ public class TreeController {
         Long parentNodeId = nodeRequest.getParentNodeId();
         treeValidator.validateTreeId(treeId);
         treeValidator.validateNodeId(nodeId);
-        treeValidator.validateNodeId(parentNodeId);
+        treeValidator.validateValue(nodeRequest.getValue());
+        if (parentNodeId != null) {
+            treeValidator.validateNodeId(parentNodeId);
+            treeValidator.validateNodeBelongingToTree(parentNodeId, treeId);
+        }
         treeValidator.validateNodeBelongingToTree(nodeId, treeId);
-        treeValidator.validateNodeBelongingToTree(parentNodeId, treeId);
 
-        nodeService.editNode(nodeId, nodeRequest);
+
+        nodeService.editNode(nodeId, nodeRequest, treeId);
     }
 
     @DeleteMapping("/{treeId}/nodes/{nodeId}")
