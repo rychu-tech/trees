@@ -6,11 +6,12 @@ import DeleteTreePopup from './DeleteTreePopup';
 const Menu = ({ selectedTree, onSelectTree }) => {
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currentItem, setCurrentItem] = useState(null);
+    const [currentItem, setCurrentItem] = useState(window.sessionStorage.getItem('treeId'));
 
     const handleTreeSelected = (item) => {
       onSelectTree(item);
-      setCurrentItem(item);
+      window.sessionStorage.setItem('treeId', item.id);
+      setCurrentItem(item.id);
     };
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const Menu = ({ selectedTree, onSelectTree }) => {
                         id={item.id}
                         key={index} 
                         
-                        className={currentItem === item ? 'menu-item-selected' : 'menu-item'}
+                        className={currentItem == item.id ? 'menu-item-selected' : 'menu-item'}
                     >
                         <div className='item-name' onClick={() => handleTreeSelected(item)}>{item.name}</div>
                         

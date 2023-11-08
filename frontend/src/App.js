@@ -18,10 +18,20 @@ function App() {
     
   };
 
+
   const handleTreeSelected = (item) => {
+    let itemId = null;
     if (item) {
-      setTreeId(item.id);
-      axiosInstance.get('/trees/' + item.id)
+      itemId = item.id;
+    }
+    else if(window.sessionStorage.getItem('treeId')) {
+      itemId = window.sessionStorage.getItem('treeId');
+    }
+
+
+    if (itemId) {
+      setTreeId(itemId);
+      axiosInstance.get('/trees/' + itemId)
       .then((response) => {
         setSelectedTree(response.data);
       })
@@ -30,6 +40,10 @@ function App() {
       });
     }
   };
+  
+  useEffect(() => {
+    handleTreeSelected(null);
+  }, [])
 
   const addNode = (item) => {
     toggleNodePopup()
