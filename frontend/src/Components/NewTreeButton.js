@@ -13,7 +13,7 @@ const NewTreeButton = () => {
 
     const addTree = () => {
         if (treeName === null || treeName.trim().length === 0) {
-            alert("Pole nie może być puste!")
+            alert("Field cannot be empty!")
         } 
         else {
             axiosInstance.post('/trees', {

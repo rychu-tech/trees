@@ -24,7 +24,7 @@ const Menu = ({ selectedTree, onSelectTree }) => {
           setMenuItems(response.data);
         })
         .catch((error) => {
-          alert('Błąd podczas pobierania danych');
+          alert('Error while fatching data');
         })
         .finally(() => {
           setLoading(false);

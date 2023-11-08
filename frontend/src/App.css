@@ -190,8 +190,8 @@ html {
 }
 
 .tree {
-  min-width: 800px;
-  width: 800px;
+  /* min-width: 800px;
+  width: 800px; */
 }
 
 #root {

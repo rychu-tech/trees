@@ -36,7 +36,7 @@ function App() {
         setSelectedTree(response.data);
       })
       .catch((error) => {
-        alert('Błąd podczas pobierania danych');
+        alert('Error while fatching data');
       });
     }
   };
