@@ -43,7 +43,6 @@ function App() {
   
   useEffect(() => {
     handleTreeSelected(null);
-    
   }, [])
 
   const addNode = (item) => {
