@@ -7,16 +7,16 @@ import axiosInstance from './axiosConfig';
 function App() {
   const [selectedTree, setSelectedTree] = useState(null);
   const handleTreeSelected = (item) => {
-    axiosInstance.get('/trees/' + item.id)
-        .then((response) => {
-          setSelectedTree(response.data);
-        })
-        .catch((error) => {
-          alert('Błąd podczas pobierania danych');
-        })
-        .finally(() => {
-          
-        });
+    if (item) {
+      axiosInstance.get('/trees/' + item.id)
+      .then((response) => {
+        setSelectedTree(response.data);
+      })
+      .catch((error) => {
+        alert('Błąd podczas pobierania danych');
+      });
+    }
+    
     
   };
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
-import { DeleteOutline } from '@mui/icons-material';
+
+import DeleteTreePopup from './DeleteTreePopup/DeleteTreePopup';
 
 const Menu = ({ selectedTree, onSelectTree }) => {
     const [menuItems, setMenuItems] = useState([]);
@@ -35,14 +36,15 @@ const Menu = ({ selectedTree, onSelectTree }) => {
                     <div 
                         id={item.id}
                         key={index} 
-                        onClick={() => handleTreeSelected(item)}
+                        
                         className={currentItem === item ? 'menu-item-selected' : 'menu-item'}
                     >
-                        {item.name}
-                        <div className="delete-outline-button">
-                          <DeleteOutline color="action" fontSize="large" />
-                        </div>
+                        <div className='item-name' onClick={() => handleTreeSelected(item)}>{item.name}</div>
                         
+                        <div className="delete-outline-button" onClick={() => handleTreeSelected(null)}>
+                          <DeleteTreePopup treeId={item.id}/>
+                        </div>
+
                     </div>
                 ))}
             </div>

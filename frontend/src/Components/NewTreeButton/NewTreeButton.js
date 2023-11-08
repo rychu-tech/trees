@@ -32,10 +32,6 @@ const NewTreeButton = () => {
         
     }
 
-    
-
-
-
     if(modal) {
         document.body.classList.add('active-modal')
     } 
