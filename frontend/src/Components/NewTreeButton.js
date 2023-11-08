@@ -60,6 +60,7 @@ const NewTreeButton = () => {
                 size='large'
                 onChange={e => setTreeName(e.target.value)}
                 defaultValue={""}
+                autoComplete='off'
             />
             <br></br>
             <Button 

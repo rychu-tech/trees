@@ -3,16 +3,18 @@ import React, { useState, useEffect } from 'react';
 import NewTreeButton from './Components/NewTreeButton';
 import Menu from './Components/Menu';
 import axiosInstance from './axiosConfig';
-import AddNodePopup from './Components/AddNodePopup';
+import NodePopup from './Components/NodePopup';
 
 function App() {
   const [selectedTree, setSelectedTree] = useState(null);
   const [treeId, setTreeId] = useState(null);
+  const [nodeId, setNodeId] = useState(null);
   const [parentNodeId, setParentNodeId] = useState(null);
-  const [showAddNodePopup, setShowAddNodePopup] = useState(false);
+  const [showNodePopup, setShowNodePopup] = useState(false);
+  const [currentItem, setCurrentItem] = useState(null);
 
-  const toggleAddNodePopup = () => {
-    setShowAddNodePopup(!showAddNodePopup);
+  const toggleNodePopup = () => {
+    setShowNodePopup(!showNodePopup);
     
   };
 
@@ -30,7 +32,9 @@ function App() {
   };
 
   const addNode = (item) => {
-    toggleAddNodePopup()
+    toggleNodePopup()
+    setCurrentItem(item)
+    setNodeId(item.id)
     setParentNodeId(item.parentNodeId)
   }
 
@@ -42,7 +46,7 @@ function App() {
             <li key={item.id} className={"node"}>
               <div className="node-content">
                 {(item.parentNodeId === null) ? "" : <div className="leaf">{item.leafSum}</div>}
-                <div className="value" onClick={() => addNode(item)}>
+                <div className={currentItem === item ? 'value-selected' : 'value'} onClick={() => addNode(item)}>
                   {item.value ? item.value : "ROOT"}
                 </div>
               </div>
@@ -60,15 +64,15 @@ function App() {
         <div className='menu-header-container'>
           <h1>Trees</h1>
         </div>
-        <Menu selectedTree={selectedTree} onSelectTree={handleTreeSelected} onToggleModal={toggleAddNodePopup}/>
+        <Menu selectedTree={selectedTree} onSelectTree={handleTreeSelected} onToggleModal={toggleNodePopup}/>
         <NewTreeButton />
       </div>
       <div className='tree-container'>
         <div className='tree'>
           {(selectedTree)  ? treeRendering([selectedTree]) : <div className='no-tree-selected'>NO TREE SELECTED</div>}
         </div>
-        {showAddNodePopup && (
-          <AddNodePopup treeId={treeId} modal={showAddNodePopup} parentNodeId={parentNodeId}/>
+        {showNodePopup && (
+          <NodePopup treeId={treeId} modal={showNodePopup} nodeId={nodeId} parentNodeId={parentNodeId}/>
         )}
       </div>
     </div>

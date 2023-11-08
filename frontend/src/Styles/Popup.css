@@ -12,8 +12,14 @@
     z-index: 9000;
 }
 
-.btn {
-    width: 50%;
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-node-btn, .delete-btn, .edit-btn {
+    width: 100%;
 }
 
 .overlay {

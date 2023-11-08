@@ -116,7 +116,7 @@
   font-size: 2.5rem;
   display: inline-block;
 }
-
+.tree li .value-selected:hover,
 .tree li .value:hover {
   background: lightblue;
   color: black;
@@ -160,7 +160,7 @@
   border-top: 2rem solid black;
   width: 0.25rem;
 }
-
+.tree li .value-selected,
 .tree li .value {
   font-size: 2.5rem;
   border: 0.2rem solid black;
@@ -170,7 +170,9 @@
   border-radius: 50%;
 }
 
-
+.tree li .value-selected {
+  background: lightblue;
+}
 
 .tree-container {
   width: 80vw;
