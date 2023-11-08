@@ -60,6 +60,7 @@ const NodePopup = (props) => {
                 })
                 .then(() => {
                     alert("Succesfully changed node value!")
+                    
                     window.location.reload(false);
                 })
                 .catch((error) => {

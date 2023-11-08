@@ -19,10 +19,11 @@ const DeleteTreePopup = (props) => {
     }
 
     const deleteTree = () => {
+        window.sessionStorage.removeItem('treeId');
         axiosInstance.delete('/trees/' + props.treeId)
         .then(() => {
           alert("Succesfully deleted tree!")
-
+          
           window.location.href = '/';
         })
         .catch((error) => {
