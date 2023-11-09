@@ -18,13 +18,14 @@ html {
 .menu {
   width: 20vw;
   display: inline-block;
-  height: 100%;
+  height: 100vh;
   border-right: 0.5rem solid black;
   background-color: #333333;
   color: #a9a9a9;
   text-align: center;
   font-size: 2rem;
 }
+
 
 .menu-items {
   overflow-x: hidden;
@@ -182,7 +183,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  overflow-x: scroll;
+  overflow-y: scroll;
 }
 
 .no-tree-selected {
@@ -190,10 +192,13 @@ html {
 }
 
 .tree {
-  /* min-width: 800px;
-  width: 800px; */
+  width: 1580px; /* Set a specific width for the content inside .tree */
+  min-width: 1580px;
+  height: 800px;
+  min-height: 800px;
 }
 
 #root {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
