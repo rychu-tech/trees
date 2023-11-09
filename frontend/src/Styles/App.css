@@ -1,0 +1,63 @@
+.page {
+  display: flex;
+  padding: 0;
+  height: 100%;
+}
+
+body, #root, html {
+  height: 100%;
+}
+
+.menu-header-container {
+  height: 10vh;
+}
+
+.menu {
+  width: 20vw;
+  display: inline-block;
+  height: 100vh;
+  border-right: 0.5rem solid black;
+  background-color: #333333;
+  color: #a9a9a9;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.menu-items {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 80vh;
+}
+
+.item-name {
+  width: 90%;
+}
+
+.menu-item-selected,
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-top: 0.2rem solid black;
+  height: 4rem;
+  background-color: #333333;
+  cursor: pointer;
+}
+
+.menu-item-selected {
+  color: #333333;
+  background-color: #989898;
+}
+
+.delete-outline-button:hover {
+  cursor: pointer;
+}
+
+.no-tree-selected {
+  font-size: 6rem;
+}
+
+#root {
+  overflow: hidden;
+}
