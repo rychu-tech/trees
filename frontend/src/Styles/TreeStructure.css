@@ -117,7 +117,13 @@
     width: 80vw;
     background-color: #a9a9a9;
     display: flex;
-    justify-content: center;
     align-items: center;
-    overflow: auto;
+    /* overflow: auto; */
+    overflow-x: scroll;
+    overflow-y: scroll;
+  }
+
+  .tree {
+    width: 1800px;
+    min-width: 1800px;
   }
