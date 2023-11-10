@@ -32,3 +32,11 @@ docker-compose up --build
 | POST | /trees/{id}/nodes | value: Integer, parentNodeId: Integer | Adds new node to tree |
 | PUT | /trees/{id}/nodes/{id} | value: Integer, parentNodeId: Integer | Edits tree node |
 | DEL | /trees/{id}/nodes/{id} |  | Removes node from tree |
+
+## Screenshots
+
+![Zrzut ekranu (14)](https://github.com/rychu-tech/trees/assets/61971646/5c75d5cf-c7c7-4b05-ae77-c54c6069954e)
+![Zrzut ekranu (15)](https://github.com/rychu-tech/trees/assets/61971646/ce151ffa-56c1-44bc-bfa9-f089c81eb5aa)
+![Zrzut ekranu (16)](https://github.com/rychu-tech/trees/assets/61971646/32ed9342-4b84-4712-96a3-f604e08bb155)
+![Zrzut ekranu (17)](https://github.com/rychu-tech/trees/assets/61971646/e7241f49-6284-4f2b-aa90-8d409cf299ce)
+![Zrzut ekranu (18)](https://github.com/rychu-tech/trees/assets/61971646/1c7fe93d-5fec-4cae-ad40-55a97443f424)
