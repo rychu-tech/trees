@@ -2,7 +2,7 @@
 
 ## Setting up
 
-To run the application, navigate to the main folder and run commands:
+To run the application, navigate to the backend folder and run command:
 1. To generate jar file
 ```
 mvn package -Dmaven.test.skip
@@ -11,7 +11,7 @@ or
 ```
 mvn package "-Dmaven.test.skip"
 ```
-2. To set up docker containers
+2. To set up docker containers go to main folder and run:
 ```
 docker-compose up --build
 ```
