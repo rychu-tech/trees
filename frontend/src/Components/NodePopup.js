@@ -51,6 +51,7 @@ const NodePopup = (props) => {
       if (!isNaN(nodeValue) && nodeValue !== null) {
         axiosInstance.put(`/trees/${props.treeId}/nodes/${props.nodeId}`, {
           value: nodeValue,
+          parentNodeId: props.parentNodeId,
         })
           .then(() => {
             alert('Successfully changed node value!');
